@@ -51,8 +51,8 @@ function do_main() {
         console.log("page loaded");
         remove_subscription_problems();
     } else {
-      console.log("page not loaded");
-      setTimeout(do_main, 200);
+        console.log("page not loaded");
+        setTimeout(do_main, 200);
     }
 }
 
