@@ -33,7 +33,7 @@ function remove_subscription_problems() {
       }
     
       if (is_subscription_problem(index)) {
-          console.log("problem #" + (index + modifier) + " is a subscription problem");
+          //console.log("problem #" + (index + modifier) + " is a subscription problem");
           index--;
           modifier++;
           element.remove();
@@ -41,4 +41,19 @@ function remove_subscription_problems() {
   }
 }
 
-setTimeout(remove_subscription_problems, 1500); //this is a pretty bad fix, should probably nullcheck the first problem to see if the page is loaded yet
+function is_page_loaded() {
+    var question_list_element = document.getElementsByClassName("question-list-table")[0];
+    return (question_list_element != null) && (question_list_element != undefined); 
+}
+
+function do_main() {
+    if (is_page_loaded()) {
+        console.log("page loaded");
+        remove_subscription_problems();
+    } else {
+      console.log("page not loaded");
+      setTimeout(do_main, 200);
+    }
+}
+
+do_main();
